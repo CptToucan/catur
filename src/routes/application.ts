@@ -1,54 +1,31 @@
 import { html, LitElement, TemplateResult} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
-// @ts-ignore
-import WaryesImage from '../../images/waryes-transparent.png';
-import {FirebaseService, FirebaseServiceClass} from '../services/firebase';
-import { User } from "firebase/auth";
+import {customElement} from 'lit/decorators.js';
 import '@vaadin/app-layout';
-import '@vaadin/app-layout/vaadin-drawer-toggle';
-import '@vaadin/icon';
-import '@vaadin/icons';
-import '@vaadin/tabs';
-import '../components/notification-manager';
-import { NotificationController } from '../controllers/notification';
-import '../components/authenticated-menu';
 
+/**
+ * The main application layout.
+ */
 @customElement('application-route')
-export class Application extends LitElement {
+export class ApplicationRoute extends LitElement {
 
-  firebase: FirebaseServiceClass = FirebaseService;
-  
-  registeredNotification(event: CustomEvent) {
-    const controller: NotificationController = event.detail.value;
-    console.log(controller);
-  }
-
-  /**
-   * loggedInUser states:
-   * undefined = waiting for auth status
-   * null      = not logged in
-   * User      = logged in
-   */
-  @property()
-  loggedInUser: User | null | undefined;
-
-  constructor() {
-    super();
-    
-    this.firebase.auth?.onAuthStateChanged((user) => {
-      this.loggedInUser = user
-    })
-  }
 
   render(): TemplateResult {
-    return html`
-    <notification-manager></notification-manager>
-    
-    ${ this.loggedInUser !== undefined ? html`
-        <authenticated-menu .user=${ this.loggedInUser }>
-          <slot></slot>
-        </authenticated-menu>` 
-        : null
-    }`;
+    return html` <vaadin-app-layout>
+      <div class="navbar-layout" slot="navbar">
+        <div class="left-navbar">
+          Catur
+        </div>
+      </div>
+
+      <slot></slot>
+    </vaadin-app-layout>`;
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'application-route': ApplicationRoute;
+  }
+}
+
+
