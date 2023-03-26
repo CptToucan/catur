@@ -1,4 +1,4 @@
-import { html, LitElement, TemplateResult} from 'lit';
+import {css, html, LitElement, TemplateResult} from 'lit';
 import {customElement} from 'lit/decorators.js';
 import '@vaadin/app-layout';
 
@@ -7,15 +7,17 @@ import '@vaadin/app-layout';
  */
 @customElement('application-route')
 export class ApplicationRoute extends LitElement {
-
-
+  static get styles() {
+    return css`
+      h1 {
+        font-size: var(--lumo-font-size-l);
+        margin: var(--lumo-space-m);
+      }
+    `;
+  }
   render(): TemplateResult {
     return html` <vaadin-app-layout>
-      <div class="navbar-layout" slot="navbar">
-        <div class="left-navbar">
-          Catur
-        </div>
-      </div>
+      <h1 slot="navbar">Catur</h1>
 
       <slot></slot>
     </vaadin-app-layout>`;
@@ -27,5 +29,3 @@ declare global {
     'application-route': ApplicationRoute;
   }
 }
-
-

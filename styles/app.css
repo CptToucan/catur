@@ -1,5 +1,6 @@
 html {
   font-family: var(--lumo-font-family);
+  --lumo-clickable-cursor: pointer;
 }
 
 body {
