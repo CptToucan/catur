@@ -7,7 +7,7 @@ const routes = [
 ] 
 
 router.setRoutes([
-  {path: '/',
+  {path: '/catur/',
     component: 'application-route',
     children: routes
   }
