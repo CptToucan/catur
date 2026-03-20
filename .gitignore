@@ -4,6 +4,5 @@
 custom-elements.json
 /out-tsc/
 # top level source
-dist
 .parcel-cache
 build
